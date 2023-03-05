@@ -44,17 +44,17 @@ model Product {
   updated_at  DateTime? @default(now())
 
   category Category @relation(fields: [category_id], references: [id])
-  itens Item []
+  itens    Item[]
 
   @@map("products")
 }
 
 model Order {
-  id String @id @default(uuid())
-  table Int
+  id     String  @id @default(uuid())
+  table  Int
   status Boolean @default(false)
-  draft Boolean @default(true)
-  name String?
+  draft  Boolean @default(true)
+  name   String?
 
   itens Item[]
 
@@ -62,14 +62,14 @@ model Order {
 }
 
 model Item {
-  id String @id @default(uuid())
-  amount Int
-  order_id String
+  id         String    @id @default(uuid())
+  amount     Int
+  order_id   String
   product_id String
-  created_at  DateTime? @default(now())
-  updated_at  DateTime? @default(now())
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
 
-  order Order @relation(fields: [order_id], references: [id])
+  order   Order   @relation(fields: [order_id], references: [id])
   product Product @relation(fields: [product_id], references: [id])
 
   @@map("itens")
