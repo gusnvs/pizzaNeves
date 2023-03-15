@@ -26,7 +26,7 @@ export function isAuthenticated(req: Request, res: Response, next: NextFunction)
         const { sub } = verify(token, process.env.JWT_SECRET) as PayLoad; // Estou afirmando que ele vai me devolver no formato que atribui no PayLoad
         //console.log(sub);
 
-        // Estamos recuperando o id do token e colocando dentro de uma variável user_id dentro do Request
+        // Estamos recuperando o id do token e colocando dentro de uma variável user_id dentro do Request, que eu tive que criar
         req.user_id = sub;
         return next();
     }catch(err){

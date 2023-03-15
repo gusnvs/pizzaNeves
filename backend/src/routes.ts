@@ -3,6 +3,9 @@ import { CreateUserController } from "./controllers/user/CreateUserController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
 import { DetailsUserController } from "./controllers/user/DetailsUserController";
 import { isAuthenticated } from "./middlewares/isAuthenticated";
+import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
+import { ListCategoryController } from "./controllers/category/ListCategoryController";
+import { CreateProductsController } from "./controllers/products/CreateProductsController";
 
 const router = Router();
 
@@ -19,5 +22,11 @@ router.get('/userInfo', isAuthenticated, new DetailsUserController().handle)
 // });
 // --------------------------------------------------------------------- Fim do 1 Tesde da API
 
+// -- ROTAS CATEGORY --
+router.post('/category', isAuthenticated, new CreateCategoryController().handle)
+router.get('/category', isAuthenticated, new ListCategoryController().handle)
+
+// -- ROTAS PRODUTS --
+router.post('/products', isAuthenticated, new CreateProductsController().handle)
 
 export { router };
