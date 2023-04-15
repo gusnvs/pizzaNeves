@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import 'express-async-errors'; // essa biblioteca foi importada no intuito de tratar erros
 import cors from 'cors';
 import { router } from "./routes";
+import path from 'path';
 
 const app = express(); // Estamos colocando tudo o que o express tem a oferecer dentro do app
 
@@ -10,6 +11,11 @@ app.use(express.json()); // Estou falando para o express que o tipo de formato q
 app.use(cors()); // Estamos habilitando para que qualquer URL,IP conseguir fazer essa requisição na nossa API, não queremos bloqieo dela
 
 app.use(router); // Estou falando que as rotas que minha aplicação vão ter, está dentro do router
+
+app.use(
+    '/files', // quando acessar esse /files ele passa acessar a foto
+    express.static(path.resolve(__dirname, '..', 'tmp')) // uma rota estática para o tmp aonde ficam as fotos
+); // uma rota para acessarmos as imagem dos produtos tanto no frontend quanto mobile
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => { // vamos tratar dois tipos de erro que possa acontecer
     if (err instanceof Error) {
