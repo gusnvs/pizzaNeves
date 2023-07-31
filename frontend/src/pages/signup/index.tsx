@@ -1,12 +1,16 @@
+import { FormEvent, useContext } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/home.module.scss'
 import logoImg from '../../../public/pizzaneves_escrita_logo.png'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
+import { AuthContext } from '@/contexts/AuthContext'
 import Link from 'next/link'
 
-export default function SingUp() {
+
+export default function SignUp() {
+
     return (
         <>
             <Head>
@@ -18,7 +22,7 @@ export default function SingUp() {
 
                     <h1>Crie sua conta</h1>
 
-                    <form action="">
+                    <form>
 
                         <Input
                             placeholder='Digite seu nome'
